@@ -36,7 +36,6 @@ class Data {
 
         bands.forEach(object => {
 
-
             if (object.name == band) {
 
                 this._bandObject = object;
