@@ -40,6 +40,7 @@ class Data {
 
                 this._bandObject = object;
 
+
                 // console.log(this.bandObject);
 
             }
