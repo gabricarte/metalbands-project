@@ -1,0 +1,49 @@
+body {
+    font-family: monospace;
+}
+
+h1 {
+    font-size: 40px;
+    font-family: 'Goth';
+}
+
+
+.main {
+    margin-top: 50px;
+    text-align: center;
+}
+
+#photo {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#text {
+
+    margin-left: 350px;
+    margin-right: 350px;
+}
+
+#result {
+    font-family: 'Forever Raw';
+    font-size: 50px;
+    margin-bottom: 15px;
+
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 12px;
+
+}
+
+#photo {
+    height: 300px;
+}
+
+#why {
+    margin-left: auto;
+    margin-top: 20px;
+    margin-right: auto;
+    display: none;
+}

@@ -16,7 +16,7 @@ class Data {
 
         let bands = [
 
-            { "name": "1914", "result": "Not Fascist", "text": "Why ?: Fairly self- explanatory; posted fuck nsbm and all nazi shit in response to a question asking if they are NSBM." },
+            { "name": "1914", "result": "Not Fascist", "text": "Fairly self- explanatory; posted fuck nsbm and all nazi shit in response to a question asking if they are NSBM." },
 
 
             {
@@ -39,9 +39,6 @@ class Data {
             if (object.name == band) {
 
                 this._bandObject = object;
-
-
-                // console.log(this.bandObject);
 
             }
 

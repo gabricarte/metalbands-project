@@ -4,9 +4,10 @@ class Controller {
 
         this.formEl = document.getElementById("form-create");
         this.photo = document.getElementById("photo");
-        this.option = document.getElementById("select"); //Banda selecionada (.value)
+        this.option = document.getElementById("select");
         this.text = document.getElementById("text");
         this.result = document.getElementById("result");
+        this.button = document.getElementById("why");
 
         this.onSubmit();
     }
@@ -18,29 +19,35 @@ class Controller {
 
             event.preventDefault();
 
+            this.band = this.option.value;
+
+            this.data = new Data(this.band);
+
+            //console.log(this.band)
+
+            this.showWhyButton();
+
             this.selectedOption();
 
+            this.hideText();
         });
+
     }
 
     selectedOption() {
 
-        let band = this.option.value;
-
-        let data = new Data(band);
 
         //Geral para todas as bandas, mudando o que está no HTML com innerText
         //usar getters and setters, pois estou utilizando atributo privado de outra classe
 
 
-        if (!data._bandObject.result || !data._bandObject.text) {
+        if (!this.data._bandObject.result || !this.data._bandObject.text) {
 
             window.alert("Please, select a valid option");
 
         } else {
 
-            this.result.innerText = data._bandObject.result;
-            this.text.innerText = data._bandObject.text;
+            this.result.innerText = this.data._bandObject.result;
 
             this.changePhoto();
 
@@ -77,12 +84,39 @@ class Controller {
     }
 
 
+    showWhyButton() {
+
+
+        this.button.style.display = "block";
+
+        this.button.addEventListener("click", e => {
+
+            this.text.innerText = this.data._bandObject.text;
+            this.showText();
+            this.hideWhyButton();
+        });
+
+    }
+
+    hideWhyButton() {
+
+        this.button.style.display = "none";
+
+    }
+
+    hideText() {
+        this.text.style.display = "none";
+    }
+
+    showText() {
+        this.text.style.display = "block";
+    }
+
     showInfo() {
 
         this.photo.style.display = "block";
         this.result.style.display = "block"
-        this.text.style.display = "block";
-
+        this.showText();
     }
 
 
