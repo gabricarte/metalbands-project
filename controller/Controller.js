@@ -67,8 +67,6 @@ class Controller {
 
         let registerBtn = document.getElementById("register");
 
-        let submitBandBtn = document.getElementById("newband-submit");
-
 
         registerBtn.addEventListener("click", e => {
 
@@ -91,13 +89,25 @@ class Controller {
             this.bandResult = document.querySelector("#band-result").value;
             this.bandText = document.querySelector("#band-text").value;
 
-
             this.newData = new Data(this.bandName);
-            this.newData.setNewBand(this.bandName, this.bandResult, this.bandText);
 
+            this.bandText.trim();
+
+            if (!this.bandText) {
+
+                this.newData.setNewBand(this.bandName, this.bandResult);
+
+                this.hideInfo();
+                this.hideWhyButton();
+
+            } else {
+
+                this.newData.setNewBand(this.bandName, this.bandResult, this.bandText);
+
+            }
 
             this.insertNewBand();
-        })
+        });
 
 
     }
@@ -115,13 +125,11 @@ class Controller {
 
         this.setNewData();
 
-
     }
+
 
     //view
     setNewData() {
-
-        //this.result.innerText = this.newData._bandObject.result;
 
         let result = this.newData._bandObject.result;
 
@@ -129,24 +137,28 @@ class Controller {
 
         result = result.trim();
 
-        if (result == "yes") {
+        if (result == "yes" && this.newData._bandObject.text) {
 
-            this.result.innerText = "Fascist"
-
+            this.result.innerText = "Fascist";
+            this.showWhyButton();
             this.showInfo();
 
-            this.showWhyButtonNewForm()
+        } else if (result == "no" && this.newData._bandObject.text) {
 
-        } else if (result == "no") {
-
-            this.result.innerText = "Not Fascist"
-
+            this.result.innerText = "Not Fascist";
+            this.showWhyButton();
             this.showInfo();
 
-            this.showWhyButtonNewForm()
+        } else if (result == "no" && !this.newData._bandObject.text) {
+            this.result.innerText = "Not Fascist";
+            this.showResult();
+            this.showPhoto();
 
-        } else {
-            window.alert("Please, insert a valid answer (Yes or No) ");
+        } else if (result == "yes" && !this.newData._bandObject.text) {
+            this.result.innerText = "Fascist";
+            this.showResult();
+            this.showPhoto();
+
         }
 
 
@@ -157,13 +169,9 @@ class Controller {
 
         let imageInput = document.querySelector("#band-photo");
 
-        //        this.photo.style.display = "block";
-
         let uploadedImage = "";
 
         imageInput.addEventListener("change", function () {
-
-            console.log(imageInput.value);
 
             let reader = new FileReader();
 
@@ -172,8 +180,6 @@ class Controller {
             reader.addEventListener("load", () => {
 
                 uploadedImage = reader.result;
-
-                console.log(photo); //== null; 
 
                 photo.src = uploadedImage;
             })
@@ -203,18 +209,21 @@ class Controller {
                 break;
 
             case "Altar of Plagues":
-
                 this.photo.src = "./css/img/altarofplagues.jpg"
                 break;
+
             case "Batushka":
                 this.photo.src = "./css/img/batushka.jpg"
                 break;
+
             case "Burzum":
                 this.photo.src = "./css/img/burzum.jpg"
                 break;
+
             case "Dark Fortress":
                 this.photo.src = "./css/img/darkfortress.jpg"
                 break;
+
             case "Dawn Ray'd":
                 this.photo.src = "./css/img/dawmrayd.jpg"
                 break;
@@ -239,7 +248,6 @@ class Controller {
         this.showWhyButton();
 
         this.button.addEventListener("click", e => {
-
 
             if (!this.data._bandObject.text) {
                 window.alert("Please, select a band before asking why")
@@ -266,9 +274,11 @@ class Controller {
 
     }
 
+    showResult() {
+        this.result.style.display = "block";
+    }
 
     hideWhyButton() {
-
         this.button.style.display = "none";
 
     }
@@ -281,9 +291,13 @@ class Controller {
         this.text.style.display = "block";
     }
 
-    showInfo() {
-
+    showPhoto() {
         this.photo.style.display = "block";
+    }
+
+
+    showInfo() {
+        this.showPhoto();
         this.result.style.display = "block";
         this.showText();
     }

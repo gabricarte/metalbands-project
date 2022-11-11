@@ -71,9 +71,16 @@ class Data {
     }
 
 
-    setNewBand(name, result, text) {
+    setNewBand(name, result, text = 0) {
 
-        this.bands.push({ "name": name, "result": result, "text": text });
+        if (!text) {
+            this.bands.push({ "name": name, "result": result });
+
+        } else {
+            this.bands.push({ "name": name, "result": result, "text": text });
+
+
+        }
 
         console.log(this.bands);
 
