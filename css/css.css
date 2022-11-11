@@ -43,9 +43,6 @@ footer {
 
 }
 
-#photo {
-    height: 300px;
-}
 
 #why {
     margin-left: auto;
@@ -88,3 +85,14 @@ label {
     width: 200px;
     text-align: left;
 }
+
+
+input[type=file] {
+    display: inline-block;
+    width: 180px;
+    text-align: left;
+    overflow: hidden;
+    color: transparent;
+}
+
+

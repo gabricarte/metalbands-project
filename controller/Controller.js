@@ -11,7 +11,8 @@ class Controller {
         this.button = document.getElementById("why");
 
         this.onSubmit();
-        this.registerBand();
+        this.newBandEvents();
+        this.changePhoto();
     }
 
 
@@ -21,11 +22,18 @@ class Controller {
 
             event.preventDefault();
 
+            this.hideNewForm();
+
             this.band = this.option.value;
+
+            if (!this.band) {
+                window.alert("Please, select a band");
+                return false;
+            }
 
             this.data = new Data(this.band);
 
-            this.showWhyButton();
+            this.validWhyButton();
 
             this.selectedOption();
 
@@ -53,25 +61,31 @@ class Controller {
 
     }
 
-    //Registra a banda digitada no json
-    registerBand() {
+    //Eventos = Ao apertar o botão "registrar", Registra a banda digitada no json
+    //Submit = Instancia a classe e lá, adiciona no array bands 
+    newBandEvents() {
 
         let registerBtn = document.getElementById("register");
 
         let submitBandBtn = document.getElementById("newband-submit");
 
+
         registerBtn.addEventListener("click", e => {
 
             e.preventDefault();
 
+            this.formEl.reset();
+
             this.newFormEl.style.display = "block";
+
             this.hideInfo();
             this.hideWhyButton();
         })
 
 
-        submitBandBtn.addEventListener("click", e => {
+        this.newFormEl.addEventListener("submit", e => {
 
+            e.preventDefault();
 
             this.bandName = document.querySelector("#band-name").value;
             this.bandResult = document.querySelector("#band-result").value;
@@ -81,13 +95,14 @@ class Controller {
             this.newData = new Data(this.bandName);
             this.newData.setNewBand(this.bandName, this.bandResult, this.bandText);
 
+
             this.insertNewBand();
         })
 
 
     }
 
-    //Changing view
+    //Changing view, inserindo a opção no selected
     insertNewBand() {
 
         let newOption = document.createElement('option');
@@ -110,26 +125,63 @@ class Controller {
 
         let result = this.newData._bandObject.result;
 
-        result.toLowerCase();
+        result = result.toLowerCase();
+
+        result = result.trim();
 
         if (result == "yes") {
 
             this.result.innerText = "Fascist"
 
+            this.showInfo();
+
+            this.showWhyButtonNewForm()
+
         } else if (result == "no") {
 
             this.result.innerText = "Not Fascist"
 
-        } else {
-            window.alert("Please, insert a valid answer");
+            this.showInfo();
 
+            this.showWhyButtonNewForm()
+
+        } else {
+            window.alert("Please, insert a valid answer (Yes or No) ");
         }
 
-        this.changePhoto();
 
-        this.showInfo();
+    }
 
-        this.showWhyButton();
+
+    getPhoto() {
+
+        let imageInput = document.querySelector("#band-photo");
+
+        //        this.photo.style.display = "block";
+
+        let uploadedImage = "";
+
+        imageInput.addEventListener("change", function () {
+
+            console.log(imageInput.value);
+
+            let reader = new FileReader();
+
+            let photo = document.getElementById("photo");
+
+            reader.addEventListener("load", () => {
+
+                uploadedImage = reader.result;
+
+                console.log(photo); //== null; 
+
+                photo.src = uploadedImage;
+            })
+
+            reader.readAsDataURL(this.files[0]);
+
+
+        })
 
     }
 
@@ -166,18 +218,28 @@ class Controller {
             case "Dawn Ray'd":
                 this.photo.src = "./css/img/dawmrayd.jpg"
                 break;
-
+            default:
+                this.getPhoto();
         }
 
     }
 
 
+    hideNewForm() {
+        this.newFormEl.style.display = "none";
+
+    }
+
     showWhyButton() {
-
-
         this.button.style.display = "block";
+    }
+
+    validWhyButton() {
+
+        this.showWhyButton();
 
         this.button.addEventListener("click", e => {
+
 
             if (!this.data._bandObject.text) {
                 window.alert("Please, select a band before asking why")
@@ -187,6 +249,20 @@ class Controller {
                 this.hideWhyButton();
             }
         });
+
+    }
+
+    showWhyButtonNewForm() {
+
+        this.showWhyButton();
+
+        this.button.addEventListener("click", e => {
+
+            this.text.innerText = this.newData._bandObject.text;
+            this.showText();
+            this.hideWhyButton();
+        });
+
 
     }
 
