@@ -35,6 +35,11 @@ class Data {
                 The band are also famous for being murderers.`
             },
             {
+                "name": "Batushka", "result": "Not fascist", "text": `Krzysztof Drabikowski has in the past made anti-fascist and anti-racist comments, and he also plays in the more explicitly antifa-oriented crust punk band Sturmovik.
+
+                The band are also famous for being murderers.`
+            },
+            {
                 "name": "Burzum", "result": "Fascist", "text": ` Varg Vikernes, sole member of Burzum, is in many ways largely responsible for the rise of the NSBM scene and popularizing far-right politics in the black metal sphere. The list of his frequently terrible opinions is endless, but a small selection of some of his most prominent beliefs include:
 
                 White supremacy/white nationalism (though he would deny being a nationalist, considering nations to be "modern constructs", his beliefs naturally will culminate in nationalism as well as fascism if taken to their only logical conclusion)
