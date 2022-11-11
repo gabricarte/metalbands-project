@@ -32,11 +32,33 @@
                 <option value="Burzum">Burzum</option>
                 <option value="Dark Fortress">Dark Fortress</option>
                 <option value="Dawn Ray'd">Dawn Ray'd</option>
+
             </select>
 
             <button type="submit" id="btn-submit">Send</button>
 
+            <button id="register">Register a band</button>
+
         </form>
+
+        <br>
+
+        <div id="newband-form" style="display: none;">
+
+            <label for="band-name">Please, type the band name</label>
+            <input type="text" id="band-name" placeholder="New band" maxlength="20"> <br>
+
+
+            <label for="band-result">Is this band fascist? </label>
+            <input type="text" id="band-result" placeholder="Yes or no" maxlength="3"> <br>
+
+            <label for="band-text">Why do you think that?</label>
+            <input type="text" id="band-text" placeholder="Reason" maxlength="100"> <br>
+
+            <button type="submit" id="newband-submit">Submit</button>
+
+
+        </div>
 
         <br>
 
@@ -50,6 +72,7 @@
 
 
         <button id="why">Why?</button>
+
 
         <footer>Font: https://rateyourmusic.com/list/HelloInquisitor/black-metal-bands-and-their-politics/
         </footer>

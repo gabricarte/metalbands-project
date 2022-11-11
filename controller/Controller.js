@@ -3,6 +3,7 @@ class Controller {
     constructor() {
 
         this.formEl = document.getElementById("form-create");
+        this.newFormEl = document.getElementById("newband-form")
         this.photo = document.getElementById("photo");
         this.option = document.getElementById("select");
         this.text = document.getElementById("text");
@@ -10,6 +11,7 @@ class Controller {
         this.button = document.getElementById("why");
 
         this.onSubmit();
+        this.registerBand();
     }
 
 
@@ -32,14 +34,10 @@ class Controller {
 
     }
 
+    //Altera as informações de acordo com a banda selecionada
     selectedOption() {
 
-
-        //Geral para todas as bandas, mudando o que está no HTML com innerText
-        //usar getters and setters, pois estou utilizando atributo privado de outra classe
-
-
-        if (!this.data._bandObject.result || !this.data._bandObject.text) {
+        if (!this) {
 
             window.alert("Please, select a valid option");
 
@@ -52,6 +50,86 @@ class Controller {
             this.showInfo();
         }
 
+
+    }
+
+    //Registra a banda digitada no json
+    registerBand() {
+
+        let registerBtn = document.getElementById("register");
+
+        let submitBandBtn = document.getElementById("newband-submit");
+
+        registerBtn.addEventListener("click", e => {
+
+            e.preventDefault();
+
+            this.newFormEl.style.display = "block";
+            this.hideInfo();
+            this.hideWhyButton();
+        })
+
+
+        submitBandBtn.addEventListener("click", e => {
+
+
+            this.bandName = document.querySelector("#band-name").value;
+            this.bandResult = document.querySelector("#band-result").value;
+            this.bandText = document.querySelector("#band-text").value;
+
+
+            this.newData = new Data(this.bandName);
+            this.newData.setNewBand(this.bandName, this.bandResult, this.bandText);
+
+            this.insertNewBand();
+        })
+
+
+    }
+
+    //Changing view
+    insertNewBand() {
+
+        let newOption = document.createElement('option');
+
+        newOption.value = `${this.bandName} `;
+
+        newOption.innerHTML = `${this.bandName} `;
+
+        this.option.appendChild(newOption);
+
+        this.setNewData();
+
+
+    }
+
+    //view
+    setNewData() {
+
+        //this.result.innerText = this.newData._bandObject.result;
+
+        let result = this.newData._bandObject.result;
+
+        result.toLowerCase();
+
+        if (result == "yes") {
+
+            this.result.innerText = "Fascist"
+
+        } else if (result == "no") {
+
+            this.result.innerText = "Not Fascist"
+
+        } else {
+            window.alert("Please, insert a valid answer");
+
+        }
+
+        this.changePhoto();
+
+        this.showInfo();
+
+        this.showWhyButton();
 
     }
 
@@ -130,8 +208,15 @@ class Controller {
     showInfo() {
 
         this.photo.style.display = "block";
-        this.result.style.display = "block"
+        this.result.style.display = "block";
         this.showText();
+    }
+
+    hideInfo() {
+
+        this.photo.style.display = "none";
+        this.result.style.display = "none";
+        this.hideText();
     }
 
 

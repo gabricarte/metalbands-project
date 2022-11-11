@@ -8,13 +8,18 @@ class Data {
 
         this.setLocal(band);
 
+        this.band = band;
+
+        this.returnBandObject();
+
+
     }
 
 
     setLocal(band) {
 
 
-        let bands = [
+        this.bands = [
 
             { "name": "1914", "result": "Not Fascist", "text": `Fairly self-explanatory; posted "fuck nsbm and all nazi shit" in response to a question asking if they are NSBM.` },
 
@@ -63,10 +68,24 @@ class Data {
 
         ]
 
+    }
 
-        bands.forEach(object => {
 
-            if (object.name == band) {
+    setNewBand(name, result, text) {
+
+        this.bands.push({ "name": name, "result": result, "text": text });
+
+        console.log(this.bands);
+
+        this.returnBandObject();
+    }
+
+
+    returnBandObject() {
+
+        this.bands.forEach(object => {
+
+            if (object.name == this.band) {
 
                 this._bandObject = object;
 
@@ -75,6 +94,8 @@ class Data {
         });
 
     }
+
+
 
     //Getters and Setters
 
