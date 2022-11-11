@@ -140,13 +140,13 @@ class Controller {
         if (result == "yes" && this.newData._bandObject.text) {
 
             this.result.innerText = "Fascist";
-            this.showWhyButton();
+            this.showWhyButtonNewForm();
             this.showInfo();
 
         } else if (result == "no" && this.newData._bandObject.text) {
 
             this.result.innerText = "Not Fascist";
-            this.showWhyButton();
+            this.showWhyButtonNewForm();
             this.showInfo();
 
         } else if (result == "no" && !this.newData._bandObject.text) {
