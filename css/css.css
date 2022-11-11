@@ -5,12 +5,17 @@ body {
 h1 {
     font-size: 40px;
     font-family: 'Goth';
+    margin-bottom: -5px;
 }
 
+h2 {
+    font-weight: normal;
+}
 
 .main {
     margin-top: 50px;
     text-align: center;
+    margin-bottom: 50px;
 }
 
 #photo {
@@ -22,6 +27,7 @@ h1 {
 
     margin-left: 350px;
     margin-right: 350px;
+    margin-top: -10px;
 }
 
 #result {
@@ -46,4 +52,29 @@ footer {
     margin-top: 20px;
     margin-right: auto;
     display: none;
+}
+
+button {
+    background-color: black;
+    color: #ffff;
+    padding: 5px 8px;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.5s ease;
+}
+
+button:hover {
+    background-color: #ffff;
+    color: black;
+    font-family: monospace;
+}
+
+#select {
+
+    cursor: text;
+    border-radius: 4px;
+    padding: 4px;
+    margin-right: 5px;
 }

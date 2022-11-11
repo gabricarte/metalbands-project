@@ -23,8 +23,6 @@ class Controller {
 
             this.data = new Data(this.band);
 
-            //console.log(this.band)
-
             this.showWhyButton();
 
             this.selectedOption();
@@ -70,7 +68,6 @@ class Controller {
                 this.photo.src = "./css/img/abigor.png"
                 break;
 
-
             case "Absurd":
                 this.photo.src = "./css/img/absurd.jpg"
                 break;
@@ -79,6 +76,19 @@ class Controller {
 
                 this.photo.src = "./css/img/altarofplagues.jpg"
                 break;
+            case "Batushka":
+                this.photo.src = "./css/img/batushka.jpg"
+                break;
+            case "Burzum":
+                this.photo.src = "./css/img/burzum.jpg"
+                break;
+            case "Dark Fortress":
+                this.photo.src = "./css/img/darkfortress.jpg"
+                break;
+            case "Dawn Ray'd":
+                this.photo.src = "./css/img/dawmrayd.jpg"
+                break;
+
         }
 
     }
@@ -91,12 +101,17 @@ class Controller {
 
         this.button.addEventListener("click", e => {
 
-            this.text.innerText = this.data._bandObject.text;
-            this.showText();
-            this.hideWhyButton();
+            if (!this.data._bandObject.text) {
+                window.alert("Please, select a band before asking why")
+            } else {
+                this.text.innerText = this.data._bandObject.text;
+                this.showText();
+                this.hideWhyButton();
+            }
         });
 
     }
+
 
     hideWhyButton() {
 
