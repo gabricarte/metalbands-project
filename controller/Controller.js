@@ -269,6 +269,7 @@ class Controller {
             this.text.innerText = this.newData._bandObject.text;
             this.showText();
             this.hideWhyButton();
+
         });
 
 
@@ -298,7 +299,7 @@ class Controller {
 
     showInfo() {
         this.showPhoto();
-        this.result.style.display = "block";
+        this.showResult();
         this.showText();
     }
 
