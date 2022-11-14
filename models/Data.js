@@ -12,6 +12,8 @@ class Data {
 
         this.returnBandObject();
 
+        this.setLocalStorage();
+
 
     }
 
@@ -74,15 +76,17 @@ class Data {
     setNewBand(name, result, text = 0) {
 
         if (!text) {
-            this.bands.push({ "name": name, "result": result });
+            window.newArray.push({ "name": name, "result": result });
 
         } else {
-            this.bands.push({ "name": name, "result": result, "text": text });
+            window.newArray.push({ "name": name, "result": result, "text": text });
 
 
         }
 
-        console.log(this.bands);
+        this.setLocalStorage();
+
+        console.log(window.newArray);
 
         this.returnBandObject();
     }
@@ -97,11 +101,29 @@ class Data {
                 this._bandObject = object;
 
             }
-
         });
+
+        window.newArray.forEach(object => {
+
+            if (object.name == this.band) {
+
+                this._bandObject = object;
+
+            }
+        });
+
 
     }
 
+    setLocalStorage() {
+        if (!window.newArray[0]) {
+            localStorage.setItem("bands", JSON.stringify(this.bands));
+        } else {
+            let bands = window.newArray;
+            localStorage.setItem("bands", JSON.stringify(bands));
+        }
+
+    }
 
 
     //Getters and Setters

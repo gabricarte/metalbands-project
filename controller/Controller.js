@@ -9,6 +9,8 @@ class Controller {
         this.text = document.getElementById("text");
         this.result = document.getElementById("result");
         this.button = document.getElementById("why");
+        window.newArray = [];
+
 
         this.onSubmit();
         this.newBandEvents();
@@ -32,6 +34,7 @@ class Controller {
             }
 
             this.data = new Data(this.band);
+            window.newArray = this.data.bands;
 
             this.validWhyButton();
 
