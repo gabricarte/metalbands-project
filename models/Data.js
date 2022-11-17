@@ -76,19 +76,40 @@ class Data {
     setNewBand(name, result, text = 0) {
 
         if (!text) {
-            window.newArray.push({ "name": name, "result": result });
+            let currBand = { "name": name, "result": result };
+            this.noRepeatBand(currBand);
 
         } else {
-            window.newArray.push({ "name": name, "result": result, "text": text });
-
+            let currBand = { "name": name, "result": result, "text": text };
+            this.noRepeatBand(currBand);
 
         }
 
         this.setLocalStorage();
 
-        console.log(window.newArray);
-
         this.returnBandObject();
+    }
+
+
+    noRepeatBand(currBand) {
+
+        let currBandStr = JSON.stringify(currBand);
+        let lastBandStr = JSON.stringify(window.newArray[window.newArray.length - 1]);
+
+        if (currBandStr == lastBandStr) {
+
+            window.alert("You can not add a band twice");
+            return false;
+
+        } else {
+            console.log("bandas diferentes, é possível adicionar.");
+
+            window.newArray.push(currBand);
+
+            console.log(window.newArray);
+        }
+
+
     }
 
 
@@ -113,14 +134,15 @@ class Data {
         });
 
 
+
+
     }
 
     setLocalStorage() {
         if (!window.newArray[0]) {
             localStorage.setItem("bands", JSON.stringify(this.bands));
         } else {
-            let bands = window.newArray;
-            localStorage.setItem("bands", JSON.stringify(bands));
+            localStorage.setItem("bands", JSON.stringify(window.newArray));
         }
 
     }
