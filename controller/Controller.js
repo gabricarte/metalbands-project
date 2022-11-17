@@ -64,8 +64,7 @@ class Controller {
 
     }
 
-    //Eventos = Ao apertar o botão "registrar", Registra a banda digitada no json
-    //Submit = Instancia a classe e lá, adiciona no array bands 
+
     newBandEvents() {
 
         let registerBtn = document.getElementById("register");
@@ -144,13 +143,17 @@ class Controller {
 
             this.result.innerText = "Fascist";
             this.showWhyButtonNewForm();
-            this.showInfo();
+            this.showPhoto();
+            this.showResult();
+
 
         } else if (result == "no" && this.newData._bandObject.text) {
 
             this.result.innerText = "Not Fascist";
             this.showWhyButtonNewForm();
-            this.showInfo();
+            this.showPhoto();
+            this.showResult();
+
 
         } else if (result == "no" && !this.newData._bandObject.text) {
             this.result.innerText = "Not Fascist";
@@ -264,6 +267,8 @@ class Controller {
     }
 
     showWhyButtonNewForm() {
+
+        this.hideText();
 
         this.showWhyButton();
 
